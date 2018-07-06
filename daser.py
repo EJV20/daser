@@ -2,7 +2,7 @@ from flask import Flask, request, url_for, redirect, session, render_template, f
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.secret_key = "Super Secrets"
+
 app = Flask(__name__, template_folder="FrontEnd/render_templates")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
 db = SQLAlchemy(app)
@@ -36,25 +36,39 @@ def logger():
         users.update({b.name: b.pas})
 
     # first check if the user is already logged in
-    if "username" in session:
-        if session["username"] in users:
-            return redirect(url_for("start", username=session["username"]))
+    # if "username" in session:
+    #     if session["username"] in users:
+    #         return redirect(url_for("start", username=session["username"]))
 
     # if not, and the incoming request is via POST try to log them in
-    elif request.method == "POST":
-        if request.form["user"] in users and users[request.form["user"]] == request.form["pass"]:
-            session["username"] = request.form["user"]
-            session_name = request.form["user"]
-            return redirect(url_for("start", username=session_name))
+    if request.method == "POST":
+        print(request.form["but"])
+        if request.form["but"] == "Login":
+            if request.form["user"] in users and users[request.form["user"]] == request.form["pass"]:
+                session["username"] = request.form["user"]
+                session_name = request.form["user"]
+                return redirect(url_for("start", username=session_name))
+            else:
+                flash('Incorrect Username or Password')
+        elif request.form["but"] == "Sign Up":
+            if request.form["nuser"] not in users:
+                u5 = User(request.form["nuser"], request.form["npass"])
+                db.session.add(u5)
+                db.session.commit()
 
-    # if all else fails, offer to log them in
+                session["username"] = request.form["nuser"]
+                session_name = request.form["nuser"]
+                return redirect(url_for("start", username=session_name))
+            else:
+                flash("Username Already Taken")
+
     return render_template("login.html")
 
 
 @app.route("/start")
 def start():
     # Render base template
-    return render_template("index.html")
+    return render_template("index.html", name=session['username'])
 
 
 # initialize the database
@@ -96,3 +110,5 @@ def unlogger():
 
 if __name__ == '__main__':
     app.run()
+
+app.secret_key = 'LKDJFDKjfkdj;sd;ifh:ID;iJ::KLd'
