@@ -1,15 +1,13 @@
 from flask import Flask, request, url_for, redirect, session, render_template, flash
-from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-api = Api(app)
-app.secret_key = "Oh no, hope no one guesses this as a secret key"
+app.secret_key = "Super Secrets"
 app = Flask(__name__, template_folder="FrontEnd/render_templates")
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
 db = SQLAlchemy(app)
 app.config.update(dict(SEND_FILE_MAX_AGE_DEFAULT=0))
+
 
 users = {}
 
@@ -33,6 +31,7 @@ def default():
 def logger():
     # Load in user names and passwords
     load = User.query.all()
+    users.clear()
     for b in load:
         users.update({b.name: b.pas})
 
@@ -50,6 +49,12 @@ def logger():
 
     # if all else fails, offer to log them in
     return render_template("login.html")
+
+
+@app.route("/start")
+def start():
+    # Render base template
+    return render_template("index.html")
 
 
 # initialize the database
