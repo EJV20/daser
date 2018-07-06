@@ -62,7 +62,7 @@ def logger():
             else:
                 login_error = 'Name already taken'
 
-return render_template("login.html", error=login_error)
+    return render_template("login.html", error=login_error)
 
 
 @app.route("/start")
