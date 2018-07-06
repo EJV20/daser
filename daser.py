@@ -29,6 +29,7 @@ def default():
 
 @app.route("/login/", methods=["GET", "POST"])
 def logger():
+    login_error = ""
     # Load in user names and passwords
     load = User.query.all()
     users.clear()
@@ -36,20 +37,19 @@ def logger():
         users.update({b.name: b.pas})
 
     # first check if the user is already logged in
-    # if "username" in session:
-    #     if session["username"] in users:
-    #         return redirect(url_for("start", username=session["username"]))
+    if "username" in session:
+        if session["username"] in users:
+            return redirect(url_for("start", username=session["username"]))
 
     # if not, and the incoming request is via POST try to log them in
-    if request.method == "POST":
-        print(request.form["but"])
+    elif request.method == "POST":
         if request.form["but"] == "Login":
             if request.form["user"] in users and users[request.form["user"]] == request.form["pass"]:
                 session["username"] = request.form["user"]
                 session_name = request.form["user"]
                 return redirect(url_for("start", username=session_name))
             else:
-                flash('Incorrect Username or Password')
+                login_error = 'Incorrect Username or Password')
         elif request.form["but"] == "Sign Up":
             if request.form["nuser"] not in users:
                 u5 = User(request.form["nuser"], request.form["npass"])
@@ -62,7 +62,8 @@ def logger():
             else:
                 flash("Username Already Taken")
 
-    return render_template("login.html")
+
+return render_template("login.html", error=login_error)
 
 
 @app.route("/start")
