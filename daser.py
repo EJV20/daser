@@ -29,7 +29,7 @@ def default():
 
 @app.route("/login/", methods=["GET", "POST"])
 def logger():
-    login_error = ""
+    login_error = "No Error"
     # Load in user names and passwords
     load = User.query.all()
     users.clear()
