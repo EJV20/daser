@@ -49,7 +49,7 @@ def logger():
                 session_name = request.form["user"]
                 return redirect(url_for("start", username=session_name))
             else:
-                login_error = 'Incorrect Username or Password')
+                login_error = 'Incorrect Username or Password'
         elif request.form["but"] == "Sign Up":
             if request.form["nuser"] not in users:
                 u5 = User(request.form["nuser"], request.form["npass"])
@@ -60,8 +60,7 @@ def logger():
                 session_name = request.form["nuser"]
                 return redirect(url_for("start", username=session_name))
             else:
-                flash("Username Already Taken")
-
+                login_error = 'Name already taken'
 
 return render_template("login.html", error=login_error)
 
