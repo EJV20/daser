@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 api = Api(app)
 app.secret_key = "Oh no, hope no one guesses this as a secret key"
-app = Flask(__name__, template_folder="/FrontEnd/render_templates")
+app = Flask(__name__, template_folder="~/FrontEnd/render_templates")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
 db = SQLAlchemy(app)
