@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title> LOGIN HERE </title>
+</head>
+<body>
+<h1> Login </h1>
+<form action="" method="post">
+    Username: <input type='text' name='user' value="{{ request.form.user }}">
+    Password: <input type='text' name='pass' value="{{ request.form.user }}">
+    <input class="btn btn-default" type="submit" value="Login">
+</form>
+<br>
+<form action="" method="post">
+    <h3> or sign up </h3>
+    <p>If signing up, make sure that the username and password inputs are empty</p>
+    New Username: <input type='text' name='nuser'>
+    New Password: <input type='text' name='npass'>
+    <input class="btn btn-default" type="submit" value="Sign Up">
+</form>
+</body>
+</html>
