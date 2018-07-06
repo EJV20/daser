@@ -10,7 +10,7 @@ app.config.update(dict(SEND_FILE_MAX_AGE_DEFAULT=0))
 
 
 users = {}
-login_error = "No Error"
+
 
 class User(db.Model):
     name = db.Column(db.String(80), primary_key=True, unique=True)
@@ -29,6 +29,7 @@ def default():
 
 @app.route("/login/", methods=["GET", "POST"])
 def logger():
+    login_error = "No Error"
     # Load in user names and passwords
     load = User.query.all()
     users.clear()
