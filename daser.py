@@ -29,7 +29,7 @@ def default():
 
 @app.route("/login/", methods=["GET", "POST"])
 def logger():
-    login_error = "No Error"
+    login_error = "No Errors"
     # Load in user names and passwords
     load = User.query.all()
     users.clear()
@@ -37,7 +37,7 @@ def logger():
         users.update({b.name: b.pas})
 
     # first check if the user is already logged in
-    if "username" in session:
+    if "username" in session and "username" in users:
         if session["username"] in users:
             return redirect(url_for("start", username=session["username"]))
 
