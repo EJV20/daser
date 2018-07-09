@@ -1,8 +1,9 @@
 h1 {
-    pt: 33
+    color: blueviolet;
 }
 
 #header {
+    align-content: center;
     height: 10%;
     width: 100%;
     background-color: darkseagreen;
@@ -15,6 +16,7 @@ h1 {
 }
 
 #content {
+    align-content: baseline;
     height: 80%;
     width: 100%;
     background-color: aliceblue;
