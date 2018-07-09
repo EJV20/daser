@@ -3,7 +3,7 @@
 <head>
     {% block head %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"/>
-    <link rel="script" href="../../static/script.js"/>
+    <link rel="script" type="text/javascript" href="{{ url_for('static', filename='script.js') }}"/>
     <title>{% block title %}{% endblock %} - Daser</title>
     {% endblock %}
 </head>
