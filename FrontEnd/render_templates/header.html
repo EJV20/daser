@@ -1,9 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>
-        Header
-    </title>
-    <link rel="stylesheet" href="FrontEnd/styles/styles.css">
-    <link rel="script" href="FrontEnd/scripts/script.js">
+    {% block head %}
+    <link rel="stylesheet" href="/FrontEnd/styles/styles.css"/>
+    <link rel="script" href="/FrontEnd/scripts/script.js"/>
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
 </head>
+<body>
+<div id="header">
+    {% block header %}
+    <h1>
+        Daser
+    </h1>
+    {% endblock %}
+</div>
+<div id="content">{% block content %}{% endblock %}</div>
+<div id="footer">
+    {% block footer %}
+    &copy; Copyright 2018 by Eric Jeff Vitunac
+    {% endblock %}
+</div>
+</body>
 </html>

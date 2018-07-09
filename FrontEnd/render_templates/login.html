@@ -1,8 +1,9 @@
-<html>
-<head>
-    <title> LOGIN HERE </title>
-</head>
-<body>
+{% extends "header.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
 <h1> Login </h1>
 <form action="" method="post">
     Username: <input type='text' name='user' value="{{ request.form.user }}">
@@ -20,5 +21,4 @@
 <br>
 <br>
 <h5 id="error">{{ error }}</h5>
-</body>
-</html>
+{% endblock %}
