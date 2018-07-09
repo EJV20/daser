@@ -2,17 +2,14 @@ h1 {
     color: blueviolet;
 }
 
+body {
+    background-color: darkslategray;
+}
+
 #header {
-    align-content: center;
     height: 10%;
     width: 100%;
     background-color: darkseagreen;
-}
-
-#footer {
-    height: 10%;
-    width: 100%;
-    background-color: antiquewhite;
 }
 
 #content {
@@ -20,4 +17,13 @@ h1 {
     height: 80%;
     width: 100%;
     background-color: aliceblue;
+}
+
+#footer {
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    background-color: antiquewhite;
 }
