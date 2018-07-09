@@ -10,16 +10,23 @@
 <body>
 <div id="header">
     {% block header %}
-    <h1>
-        Daser
-    </h1>
+    <header>
+        <h1>
+            Daser
+        </h1>
+        <form>
+            <input type="button" value="Feed">
+            <input type="button" value="Profile">
+            <input type="button" value="Messaging">
+            <input type="button" value="Projects">
+            <input type="button" value="Settings">
+        </form>
+    </header>
     {% endblock %}
 </div>
+
+
 <div id="content">{% block content %}{% endblock %}</div>
-<div id="footer">
-    {% block footer %}
-    &copy; Copyright 2018 by Eric Jeff Vitunac
-    {% endblock %}
-</div>
+
 </body>
 </html>

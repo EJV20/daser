@@ -6,16 +6,20 @@
 {% block content %}
 <h1> Login </h1>
 <form action="" method="post">
-    Username: <input type='text' name='user' value="{{ request.form.user }}">
-    Password: <input type='text' name='pass' value="{{ request.form.pass }}">
+    Username: <input type='text' name='user'>
+    <br>
+    Password: <input type='text' name='pass'>
+    <br>
     <input class="btn btn-default" type="submit" name="but" value="Login">
 </form>
 <br>
+<br>
 <form action="" method="post">
-    <h3> or sign up </h3>
-    <p>If signing up, make sure that the username and password inputs are empty</p>
+    <h1>Sign Up</h1>
     New Username: <input type='text' name='nuser'>
+    <br>
     New Password: <input type='text' name='npass'>
+    <br>
     <input class="btn btn-default" type="submit" name="but" value="Sign Up">
 </form>
 <br>

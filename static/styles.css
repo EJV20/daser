@@ -1,28 +1,24 @@
 h1 {
-    color: blueviolet;
+    color: ghostwhite;
+}
+
+form {
+    color: ghostwhite;
 }
 
 body {
-    background-color: darkslategray;
+    background-color: mediumslateblue;
 }
 
 #header {
     height: 10%;
     width: 100%;
-    background-color: darkseagreen;
+    background-color: darkorange;
 }
 
 #content {
-    align-content: baseline;
     height: 80%;
     width: 100%;
-    background-color: aliceblue;
+    background-color: coral;
 }
 
-#footer {
-    position: fixed;
-    bottom: 0;
-    height: 5%;
-    width: 100%;
-    background-color: antiquewhite;
-}
