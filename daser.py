@@ -17,7 +17,7 @@ class Post(db.Model):
     id = db.Column('post_id', db.Integer, primary_key=True, unique=True)
     text = db.Column('post_text', db.String(300))
     time = db.Column('post_time', db.String(20))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    user_name = db.Column(db.String(80), db.ForeignKey('users.user_name'))
     user = db.relationship('User')
 
     def __init__(self, txt, usr, tm):
@@ -85,7 +85,14 @@ def logger():
 
 @app.route("/feed")
 def feed():
-
+    feed_load = db.query(Post).limit(25)
+    feed_names = []
+    feed_posts = []
+    feed_times = []
+    for f in feed_load:
+        feed_names.append(f.user_name)
+        feed_posts.append(f.text)
+        feed_times.append(f.time)
     # Render base template
     return render_template("feed.html", name=session['username'])
 
