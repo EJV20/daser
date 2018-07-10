@@ -10,6 +10,10 @@
     </div>
     <div id="right_col">
         <h2>Feed</h2>
+        {% for f in feeds %}
+        <p><b>{{ f[0] }}</b> : {{ f[1] }}</p>
+        <a>{{ f[2] }}</a>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

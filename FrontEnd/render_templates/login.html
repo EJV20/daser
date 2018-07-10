@@ -3,6 +3,18 @@
 {% block head %}
 {{ super() }}
 {% endblock %}
+{% block header %}
+<header>
+    <h1>
+        Daser
+    </h1>
+    <form>
+        <input type="button" value="About us">
+        <input type="button" value="Contact us">
+        <input type="button" value="Policy">
+    </form>
+</header>
+{% endblock %}
 {% block content %}
 <h1> Login </h1>
 <form action="" method="post">

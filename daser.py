@@ -85,16 +85,13 @@ def logger():
 
 @app.route("/feed")
 def feed():
-    feed_load = db.query(Post).limit(25)
-    feed_names = []
-    feed_posts = []
-    feed_times = []
+    feed_load = Post.query.limit(25)
+    feeds = []
     for f in feed_load:
-        feed_names.append(f.user_name)
-        feed_posts.append(f.text)
-        feed_times.append(f.time)
+        feed_feed = [f.user_name, f.text, f.time]
+        feeds.append(feed_feed)
     # Render base template
-    return render_template("feed.html", name=session['username'])
+    return render_template("feed.html", name=session['username'], feed=feeds)
 
 
 # initialize the database
