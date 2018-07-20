@@ -79,6 +79,12 @@ def logger():
                 return redirect(url_for("feed", username=session_name))
             else:
                 login_error = 'Name already taken'
+        elif request.form["but"] == "About Us":
+            return redirect(url_for("about"))
+        elif request.form["but"] == "contact":
+            return redirect(url_for("contact"))
+        elif request.form["but"] == "Policy":
+            return redirect(url_for("policy"))
 
     return render_template('login.html', error=login_error)
 
@@ -92,6 +98,11 @@ def feed():
         feeds.append(feed_feed)
     # Render base template
     return render_template("feed.html", name=session['username'], feed=feeds)
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 
 # initialize the database
