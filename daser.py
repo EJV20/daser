@@ -22,7 +22,7 @@ class Post(db.Model):
 
     def __init__(self, txt, usr, tm):
         self.text = txt
-        self.user_id = usr
+        self.user_name = usr
         self.time = tm
 
 
@@ -79,12 +79,6 @@ def logger():
                 return redirect(url_for("feed", username=session_name))
             else:
                 login_error = 'Name already taken'
-        elif request.form["but"] == "About Us":
-            return redirect(url_for("about"))
-        elif request.form["but"] == "contact":
-            return redirect(url_for("contact"))
-        elif request.form["but"] == "Policy":
-            return redirect(url_for("policy"))
 
     return render_template('login.html', error=login_error)
 
@@ -94,15 +88,30 @@ def feed():
     feed_load = Post.query.limit(25)
     feeds = []
     for f in feed_load:
+        print(feed_load)
         feed_feed = [f.user_name, f.text, f.time]
         feeds.append(feed_feed)
     # Render base template
+
+    if request.method == "POST":
+        if request.form["but"] == "Feed":
+            redirect(url_for('feed'))
+        elif request.form["but"] == "Profile":
+            redirect(url_for('profile'))
+        elif request.form["but"] == "Leaders":
+            redirect(url_for('leaders'))
+
     return render_template("feed.html", name=session['username'], feed=feeds)
 
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
+@app.route("/profile")
+def message():
+    return render_template("profile.html")
+
+
+@app.route("/leaders")
+def leaders():
+    return render_template("leaders.html")
 
 
 # initialize the database
