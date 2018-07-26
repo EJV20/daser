@@ -90,6 +90,7 @@ def feed():
 
     if request.method == "POST":
         if request.form["but"] == "Feed":
+
             redirect(url_for('feed'))
         elif request.form["but"] == "Profile":
             redirect(url_for('profile'))
@@ -101,7 +102,7 @@ def feed():
 
 
 @app.route("/profile", methods=["GET", "POST"])
-def message():
+def profile():
     return render_template("profile.html")
 
 
