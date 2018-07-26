@@ -85,8 +85,8 @@ def logger():
 @app.route("/feed")
 def feed():
     # Query for feed
-    for name, text, time in Post.query(Post.user_name, Post.text, Post.time):
-        print(name, text, time)
+    f = Post.query.limit(10)
+    m = Post.query.filter_by(user_name=session['username']).limit(10)
 
     if request.method == "POST":
         if request.form["but"] == "Feed":
@@ -96,7 +96,8 @@ def feed():
         elif request.form["but"] == "Leaders":
             redirect(url_for('leaders'))
 
-    return render_template("feed.html", name=session['username'])
+    return render_template("feed.html", name=session['username'], feeds=f,
+                           meeds=m)
 
 
 @app.route("/profile")

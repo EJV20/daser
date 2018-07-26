@@ -1,4 +1,4 @@
-{% extends "header.html" %}
+{% extends "header2.html" %}
 {% block title %}News Feed{% endblock %}
 {% block head %}
 {{ super() }}
@@ -7,12 +7,16 @@
 <div id="feed_table">
     <div id="left_col">
         <h2>{{ name }}</h2>
+        {% for m in meeds %}
+        <p><b>{{ m.user_name }}</b> : {{ m.text }}</p>
+        <a>{{ m.time }}</a>
+        {% endfor %}
     </div>
     <div id="right_col">
         <h2>Feed</h2>
         {% for f in feeds %}
-        <p><b>{{ f[0] }}</b> : {{ f[1] }}</p>
-        <a>{{ f[2] }}</a>
+        <p><b>{{ f.user_name }}</b> : {{ f.text }}</p>
+        <a>{{ f.time }}</a>
         {% endfor %}
     </div>
 </div>
