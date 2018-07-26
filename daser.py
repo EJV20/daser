@@ -8,7 +8,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///friends.db'
 db = SQLAlchemy(app)
 app.config.update(dict(SEND_FILE_MAX_AGE_DEFAULT=0))
 
-
 users = {}
 
 
@@ -85,13 +84,9 @@ def logger():
 
 @app.route("/feed")
 def feed():
-    feed_load = Post.query.limit(25)
-    feeds = []
-    for f in feed_load:
-        print(feed_load)
-        feed_feed = [f.user_name, f.text, f.time]
-        feeds.append(feed_feed)
-    # Render base template
+    # Query for feed
+    for name, text, time in Post.query(Post.user_name, Post.text, Post.time):
+        print(name, text, time)
 
     if request.method == "POST":
         if request.form["but"] == "Feed":
@@ -101,7 +96,7 @@ def feed():
         elif request.form["but"] == "Leaders":
             redirect(url_for('leaders'))
 
-    return render_template("feed.html", name=session['username'], feed=feeds)
+    return render_template("feed.html", name=session['username'])
 
 
 @app.route("/profile")
