@@ -82,7 +82,7 @@ def logger():
     return render_template('login.html', error=login_error)
 
 
-@app.route("/feed")
+@app.route("/feed", methods=["GET", "POST"])
 def feed():
     # Query for feed
     f = Post.query.limit(10)
@@ -100,14 +100,14 @@ def feed():
                            meeds=m)
 
 
-@app.route("/profile")
+@app.route("/profile", methods=["GET", "POST"])
 def message():
     return render_template("profile.html")
 
 
-@app.route("/leaders")
+@app.route("/leaders", methods=["GET", "POST"])
 def leaders():
-    return render_template("leaders.html")
+    return render_template("leader.html")
 
 
 # initialize the database
