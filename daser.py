@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import functions as f
 from flask import Flask, request, url_for, redirect, session, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
 
@@ -68,16 +68,22 @@ def logger():
             else:
                 login_error = 'Incorrect Username or Password'
         elif request.form["but"] == "Sign Up":
-            if request.form["nuser"] not in users:
-                u5 = User(request.form["nuser"], request.form["npass"], datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-                db.session.add(u5)
-                db.session.commit()
-
-                session["username"] = request.form["nuser"]
-                session_name = request.form["nuser"]
-                return redirect(url_for("feed", username=session_name))
+            new_user = request.form["nuser"]
+            new_pass = request.form["npass"]
+            from_signup = f.signup_checks(new_user, new_pass)
+            if from_signup != 0:
+                login_error = from_signup
             else:
-                login_error = 'Name already taken'
+                if request.form["nuser"] not in users:
+                    u5 = User(request.form["nuser"], request.form["npass"], datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                    db.session.add(u5)
+                    db.session.commit()
+
+                    session["username"] = request.form["nuser"]
+                    session_name = request.form["nuser"]
+                    return redirect(url_for("feed", username=session_name))
+                else:
+                    login_error = 'Name already taken'
 
     return render_template('login.html', error=login_error)
 
