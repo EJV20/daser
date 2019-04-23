@@ -1,16 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_styles.css') }}"/>
-    <title>Welcome!</title>
-</head>
-<div class="login-wrap">
-  <h2>Login</h2>
-  
-  <div class="form" method="post">
-    <input type="text" placeholder="Username" name="user" />
-    <input type="password" placeholder="Password" name="pass" />
-    <button> Sign in </button>
-    <a href="#"> <p> Don't have an account? Register </p></a>
-  </div>
+{% extends "header.html" %}
+{% block title %}Welcome!{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div id="login-box">
+<h1> Login </h1>
+<form action="" method="post">
+    Username: <input type='text' name='user'>
+    <br>
+    Password: <input type='text' name='pass'>
+    <br>
+    <input class="btn btn-default" type="submit" name="but" value="Login">
+</form>
+<br>
+<br>
+<form action="" method="post">
+    <h1>Sign Up</h1>
+    New Username: <input type='text' name='nuser'>
+    <br>
+    New Password: <input type='text' name='npass'>
+    <br>
+    <input class="btn btn-default" type="submit" name="but" value="Sign Up">
+</form>
+<br>
+<br>
+<h5 id="error">{{ error }}</h5>
 </div>
+{% endblock %}

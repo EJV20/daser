@@ -46,7 +46,7 @@ def default():
 
 @app.route("/login/", methods=["GET", "POST"])
 def logger():
-    login_error = ""
+    login_error = "No Errors"
     # Load in user names and passwords
     load = User.query.all()
     users.clear()
@@ -67,38 +67,19 @@ def logger():
                 return redirect(url_for("feed", username=session_name))
             else:
                 login_error = 'Incorrect Username or Password'
-
-    return render_template('login.html', error=login_error)
-	
-
-@app.route("/signup/", methods=["GET", "POST"])
-def signupper():
-	login_error = ""
-    # Load in user names and passwords
-    load = User.query.all()
-    users.clear()
-    for b in load:
-        users.update({b.name: b.pas})
-
-    # first check if the user is already logged in
-    if "username" in session and "username" in users:
-        if session["username"] in users:
-            return redirect(url_for("feed", username=session["username"]))
-
-    # if not, and the incoming request is via POST try to log them in
-    elif request.method == "POST":
-        if request.form["but"] == "Sign Up":
+        elif request.form["but"] == "Sign Up":
             if request.form["nuser"] not in users:
                 u5 = User(request.form["nuser"], request.form["npass"], datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
                 db.session.add(u5)
                 db.session.commit()
+
                 session["username"] = request.form["nuser"]
                 session_name = request.form["nuser"]
                 return redirect(url_for("feed", username=session_name))
             else:
                 login_error = 'Name already taken'
 
-    return render_template('signup.html', error=login_error)
+    return render_template('login.html', error=login_error)
 
 
 @app.route("/feed", methods=["GET", "POST"])
@@ -109,6 +90,7 @@ def feed():
 
     if request.method == "POST":
         if request.form["but"] == "Feed":
+
             redirect(url_for('feed'))
         elif request.form["but"] == "Profile":
             redirect(url_for('profile'))

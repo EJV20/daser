@@ -6,18 +6,11 @@
 {% block content %}
 <div id="feed_table">
     <div id="left_col">
-        <div id="profile-left-top">
-            <form id="enter-feed">
-                <input type="text" name="new-message">
-            </form>
-        </div>
-        <div id="profile-left-bot">
-            <h2>{{ name }}</h2>
-            {% for m in meeds %}
-            <p><b>{{ m.user_name }}</b> : {{ m.text }}</p>
-            <a>{{ m.time }}</a>
-            {% endfor %}
-        </div>
+        <h2>{{ name }}</h2>
+        {% for m in meeds %}
+        <p><b>{{ m.user_name }}</b> : {{ m.text }}</p>
+        <a>{{ m.time }}</a>
+        {% endfor %}
     </div>
     <div id="right_col">
         <h2>Feed</h2>
